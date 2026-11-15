@@ -1,11 +1,16 @@
 .git
 .github
+.gitignore
+.gitattributes
+.pre-commit-config.yaml
 build
+docs
 **/.ipynb_checkpoints
 **/__pycache__
 **/.pytest_cache
 # Files the notebooks write when they run.
 **/timings
+**/runs
 **/machine.json
 **/data
 **/nsys-probes

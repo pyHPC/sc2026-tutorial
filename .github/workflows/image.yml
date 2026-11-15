@@ -4,12 +4,30 @@ name: Image
 # on the self-hosted Brev runner that brev/runner-setup.bash registers. Every run builds the
 # image, runs the package tests and every notebook in it, starts the Compose stack from it and
 # pushes it. A pull request is built only when its branch lives in this repository: a fork's
-# code never runs on the runner. The latest tag moves on a push to main.
+# code never runs on the runner. The latest tag moves on a push to main. A change that touches
+# only files outside the image (docs/, the root README, licences, the Checks workflow) builds
+# nothing; a README under notebooks/ is served to students, so it still builds.
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - README.md
+      - docs/**
+      - LICENSE*
+      - .gitignore
+      - .gitattributes
+      - .pre-commit-config.yaml
+      - .github/workflows/checks.yml
   pull_request:
     branches: [main]
+    paths-ignore:
+      - README.md
+      - docs/**
+      - LICENSE*
+      - .gitignore
+      - .gitattributes
+      - .pre-commit-config.yaml
+      - .github/workflows/checks.yml
   workflow_dispatch:
     inputs:
       latest:
