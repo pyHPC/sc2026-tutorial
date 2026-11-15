@@ -5,3 +5,4 @@ __pycache__/
 .vscode/
 .devcontainer/
 build/
+runs/
