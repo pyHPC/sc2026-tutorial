@@ -7,11 +7,9 @@ Python is powering breakthrough exascale scientific discoveries - come learn how
 supercomputers with it! In this interactive tutorial you'll learn how to write, debug, profile, and optimize
 high-performance, multi-node GPU applications in Python. You'll learn and master: CuPy for drop-in GPU acceleration of
 NumPy workflows, Numba for writing custom kernels that match the performance of C++ and Fortran, mpi4py for scaling
-across thousands of nodes, DragonHPC for workflow acceleration, and CppJIT for on-demand Python/C++ interoperability
-and automatic binding generation, including compiler-based automatic differentiation of C++ with Clad. Everything is
-hands-on: short, interactive lectures by expert instructors are paired with guided Jupyter notebooks that introduce
+across thousands of nodes, DragonHPC for workflow acceleration with cuPhoton for astronomical image processing, and CppJIT for on-demand Python/C++ interoperability and automatic binding generation, including compiler-based automatic differentiation of C++ with Clad. Everything is hands-on: short, interactive lectures by expert instructors are paired with guided Jupyter notebooks that introduce
 each concept and have you apply it immediately in bite-sized exercises, among them a mini-app applying several
-programming models (CuPy, JAX, cuda.compute, Numba CUDA and CppJIT) to cosmic-web data and a CARTopiaX CAR T-cell
+programming models (JAX, cuda.compute, Numba CUDA) to simulated cosmic-web data and a CARTopiaX CAR T-cell
 therapy example. We'll use a web-based environment that requires no installs or setup - just a laptop and a browser.
 Whether you're a domain scientist seeking faster turnaround or a software engineer evaluating portable acceleration
 strategies, you'll leave with a roadmap, skills, and code for bringing scalable Python practices back to your own HPC
@@ -48,14 +46,19 @@ helpful but not required. The outline and the notebook list are in
 
 The tutorial runs in the container image `ghcr.io/pyhpc/sc2026-tutorial`. [brev/docker-compose.yml](brev/docker-compose.yml)
 starts JupyterLab on port 8888, opening on the outline, with Nsight Systems on port 8080 and Nsight Compute on
-port 8081 as launcher tiles. Brev starts this file. Locally, with Docker and the NVIDIA Container Toolkit installed:
+port 8081 as launcher tiles. Brev starts this file; [docs/brev.md](docs/brev.md) is the attendees' guide. Locally,
+with Docker and the NVIDIA Container Toolkit installed:
 
 ```bash
 docker compose -f brev/docker-compose.yml up -d
 docker compose -f brev/docker-compose.yml down -v
 ```
 
-## Development
+
+
+<details>
+
+<summary><strong>Development</strong></summary>
 
 ```bash
 docker compose -f brev/docker-compose.yml -f brev/docker-compose.dev.yml up -d   # this checkout mounted in the containers
@@ -70,6 +73,9 @@ The two checks also run as pre-commit hooks (`pre-commit install`) and in the `C
 workflow builds the image on a self-hosted GPU runner set up with `brev/runner-setup.bash`, runs every notebook
 in it, starts the Compose stack from it and publishes it: a pull request from a branch of this repository gets
 the tag `pr-<number>`, a push to `main` the tags `git-<sha>` and `latest`.
+
+
+</details>
 
 ## Licences
 
